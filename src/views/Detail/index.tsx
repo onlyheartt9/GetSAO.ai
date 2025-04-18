@@ -34,17 +34,15 @@ export default function Detail() {
             </div>
           ))}
         </div>
-        <Card title="第一部分数据" className="mt-4">
+        <Card className="mt-4">
           <Report1 data={data}></Report1>
         </Card>
         <Card title="相关来源数量" className="mt-4">
           <Report2 data={data}></Report2>
         </Card>
-        {/* <Card title="第三部分数据" className="mt-4">
-          <div>
-            <div></div>
-          </div>
-        </Card> */}
+        <Card className="mt-4">
+          <Report3 data={data}></Report3>
+        </Card>
       </div>
     </div>
   );
@@ -98,7 +96,7 @@ const Report1 = ({ data }: { data: any }) => {
       <div className="mt-4 text-[14px] font-bold">内容平台分发</div>
       <div className="mt-4 rounded-md bg-[#eee] px-4 py-2">
         <div>{"{"}</div>
-        {Object.keys(data?.report_2?.content_sourcing_distribution)?.map(
+        {Object?.keys(data?.report_2?.content_sourcing_distribution)?.map(
           (key) => (
             <div className="ml-4">
               "{key}":{data?.report_2?.content_sourcing_distribution[key]}
@@ -140,6 +138,28 @@ const Report2 = ({ data }: { data: any }) => {
   ];
   const list = [data?.report_4];
 
+  return (
+    <div>
+      <ProTable
+        columns={columns}
+        dataSource={list}
+        toolBarRender={false}
+        search={false}
+        pagination={false}
+      ></ProTable>
+    </div>
+  );
+};
+
+const Report3 = ({ data }: { data: any }) => {
+  const columns = [
+    {
+      title: "新闻媒体类内容来源总数",
+      dataIndex: "Social Media",
+    },
+  ];
+  const list = [data?.report_3];
+  console.log(data?.report_3);
   return (
     <div>
       <ProTable

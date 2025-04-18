@@ -18,9 +18,20 @@ export const getList = async (params: any) => {
 
 export const getDetail = async (params: any) => {
   const token = "app-US464lrAYsRnI1GeWOt0xF8K";
-  // const response = await request.post(
+  const response = await request.post(
 
-  const response = {
+  
+    "https://api.dify.ai/v1/workflows/run",
+    {
+      inputs: params,
+      response_mode: "blocking",
+      user: "abc-123",
+    },
+    {
+      token: token,
+    }
+  );
+  const response1 = {
     task_id: "e7eba740-a22c-422f-8fed-2b6bddbe858c",
     workflow_run_id: "a1e8c1ff-fe09-4707-8e90-ba0c8854261d",
     data: {
@@ -114,16 +125,6 @@ export const getDetail = async (params: any) => {
       finished_at: 1744978295,
     },
   };
-  //   "https://api.dify.ai/v1/workflows/run",
-  //   {
-  //     inputs: params,
-  //     response_mode: "blocking",
-  //     user: "abc-123",
-  //   },
-  //   {
-  //     token: token,
-  //   }
-  // );
   const { log_combined_results, report_1, report_2, report_3, report_4 } =
     response.data.outputs ?? {};
   return {
