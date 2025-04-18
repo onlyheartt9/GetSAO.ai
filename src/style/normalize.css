@@ -1,0 +1,89 @@
+/* 1. 去除所有元素的外边距和内边距 */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 2. 使链接在点击时不变色 */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+/* 3. 设置所有元素的字体继承自 body */
+body {
+  font-family: sans-serif;
+  line-height: 1.5;
+  background-color: #fafafa;
+  color: #333;
+  -webkit-font-smoothing: antialiased; /* 提高字体渲染 */
+  -moz-osx-font-smoothing: grayscale; /* 提高字体渲染 */
+}
+
+/* 4. 设置表单控件统一样式 */
+input,
+textarea,
+button,
+select {
+  font: inherit;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+/* 5. 避免图片被拉伸 */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 6. 去除列表默认样式 */
+ul,
+ol {
+  list-style: none;
+}
+
+/* 7. 去除表格默认样式 */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* 8. 让所有元素使用相同的盒子模型 */
+* {
+  box-sizing: border-box;
+}
+
+/* 9. 设置输入框、按钮等的默认样式 */
+input,
+button,
+select,
+textarea {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+/* 10. 处理页面上的超链接（可选） */
+a {
+  text-decoration: none; /* 去掉下划线 */
+  color: inherit; /* 让链接继承父元素颜色 */
+}
+
+/* 11. 避免 CSS 样式表加载时的闪烁效果 */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

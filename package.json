@@ -1,0 +1,56 @@
+{
+  "name": "getsao-web",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@ant-design/icons": "^6.0.0",
+    "@ant-design/pro-components": "^2.8.7",
+    "@craco/craco": "7.0.0",
+    "@types/jest": "^27.0.1",
+    "@types/lodash": "^4.17.13",
+    "@types/node": "^16.7.13",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "ahooks": "^3.8.4",
+    "antd": "^5.24.7",
+    "axios": "^1.7.7",
+    "dayjs": "^1.11.13",
+    "notistack": "^3.0.2",
+    "react": "^19.0.0",
+    "react-chat-elements": "^12.0.17",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^6.28.0",
+    "react-scripts": "5.0.1",
+    "typescript": "^5.0.4",
+    "web-vitals": "^2.1.0",
+    "zustand": "^5.0.1"
+  },
+  "scripts": {
+    "dev": "craco start",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.15",
+    "@types/d3": "^7.4.3"
+  }
+}

@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "RobotoMono", sans-serif !important;
+}
+html {
+  height: 100% !important;
+}
+html,
+body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+@font-face {
+  font-family: "Poppins";
+  font-weight: 400;
+  src: url("../font/poppins/Poppins-Light.ttf") format("woff2");
+}
+@font-face {
+  font-family: "Poppins";
+  font-weight: 500;
+  src: url("../font/poppins/Poppins-Medium.ttf") format("woff2");
+}
+@font-face {
+  font-family: "Poppins";
+  font-weight: 600;
+  src: url("../font/poppins/Poppins-SemiBold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Poppins";
+  font-weight: 700;
+  src: url("../font/poppins/Poppins-Bold.ttf") format("woff2");
+}
+
+@font-face {
+  font-family: "RobotoMono";
+  font-weight: 700;
+  src: url("../font/robotoMono/RobotoMono-Bold.ttf") format("woff2");
+}
+@font-face {
+  font-family: "RobotoMono";
+  font-weight: 400;
+  src: url("../font/robotoMono/RobotoMono-Regular.ttf") format("woff2");
+}
+@font-face {
+  font-family: "RobotoMono";
+  font-weight: 500;
+  src: url("../font/robotoMono/RobotoMono-Medium.ttf") format("woff2");
+}
+@font-face {
+  font-family: "RobotoMono";
+  font-weight: 600;
+  src: url("../font/robotoMono/RobotoMono-SemiBold.ttf") format("woff2");
+}
