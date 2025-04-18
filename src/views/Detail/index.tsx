@@ -1,4 +1,5 @@
 import { getDetail } from "@/services/list";
+import { LoadingOutlined } from "@ant-design/icons";
 import { ProTable } from "@ant-design/pro-components";
 import { Card } from "antd";
 import { useEffect, useState } from "react";
@@ -8,13 +9,14 @@ export default function Detail() {
   const { state } = useLocation();
 
   const [data, setData] = useState<any>({});
-
+  const [loading, setLoading] = useState(false);
   const getDetailData = async () => {
+    setLoading(true);
     const res = await getDetail({
       productName: state.productName,
       question_list: '["' + state.prompt?.join('","') + '"]',
     });
-
+    setLoading(false);
     setData(res);
   };
 
@@ -34,15 +36,24 @@ export default function Detail() {
             </div>
           ))}
         </div>
-        <Card className="mt-4">
-          <Report1 data={data}></Report1>
-        </Card>
-        <Card title="相关来源数量" className="mt-4">
-          <Report2 data={data}></Report2>
-        </Card>
-        <Card className="mt-4">
-          <Report3 data={data}></Report3>
-        </Card>
+        {loading && (
+          <div className="mt-4">
+            <LoadingOutlined></LoadingOutlined>
+          </div>
+        )}
+        {!loading && (
+          <div>
+            <Card className="mt-4">
+              <Report1 data={data}></Report1>
+            </Card>
+            <Card title="相关来源数量" className="mt-4">
+              <Report2 data={data}></Report2>
+            </Card>
+            <Card className="mt-4">
+              <Report3 data={data}></Report3>
+            </Card>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -96,13 +107,14 @@ const Report1 = ({ data }: { data: any }) => {
       <div className="mt-4 text-[14px] font-bold">内容平台分发</div>
       <div className="mt-4 rounded-md bg-[#eee] px-4 py-2">
         <div>{"{"}</div>
-        {Object?.keys(data?.report_2?.content_sourcing_distribution)?.map(
-          (key) => (
-            <div className="ml-4">
-              "{key}":{data?.report_2?.content_sourcing_distribution[key]}
-            </div>
-          )
-        )}
+        {data?.report_2?.content_sourcing_distribution &&
+          Object?.keys(data?.report_2?.content_sourcing_distribution)?.map(
+            (key) => (
+              <div className="ml-4">
+                "{key}":{data?.report_2?.content_sourcing_distribution[key]}
+              </div>
+            )
+          )}
         <div>{"}"}</div>
       </div>
     </div>
@@ -154,17 +166,73 @@ const Report2 = ({ data }: { data: any }) => {
 const Report3 = ({ data }: { data: any }) => {
   const columns = [
     {
-      title: "新闻媒体类内容来源总数",
-      dataIndex: "Social Media",
+      title: "网址",
+      dataIndex: "url",
+      width: 200,
+    },
+    {
+      title: "内容",
+      dataIndex: "content",
     },
   ];
-  const list = [data?.report_3];
-  console.log(data?.report_3);
+  const columns1 = [
+    {
+      title: "Category",
+      dataIndex: "category",
+      width: 200,
+    },
+    {
+      title: "Description",
+      dataIndex: "description",
+    },
+    {
+      title: "Sources",
+      dataIndex: "sources",
+      render: (value: any) => {
+        console.log(value, 9999);
+        return (
+          <div className="flex flex-col">
+            {value?.map((item: any,index) => {
+              return <div>{index+1}.{item.website}：{item.quote}</div>;
+            })}
+          </div>
+        );
+      },
+    },
+  ];
+  // const list = [data?.report_3];
+  const [list, setList] = useState<any[]>([]);
+  const [list1, setList1] = useState<any[]>([]);
+  useEffect(() => {
+    console.log(data?.report_3);
+    if (!data?.report_3) {
+      return;
+    }
+    const website_summaries = data?.report_3?.website_summaries;
+    const _list = Object?.keys(website_summaries)?.map((item: any) => {
+      return {
+        url: item,
+        content: website_summaries[item],
+      };
+    });
+    setList(_list);
+    setList1(data?.report_3?.weakness_report);
+  }, [data]);
   return (
     <div>
+      <div className="text-[14px] font-bold">Website_summaries</div>
       <ProTable
         columns={columns}
         dataSource={list}
+        toolBarRender={false}
+        search={false}
+        pagination={false}
+      ></ProTable>
+
+      <div className="text-[14px] font-bold mt-4">Weakness_report</div>
+      <ProTable
+        columns={columns1}
+        dataSource={list1}
         toolBarRender={false}
         search={false}
         pagination={false}
